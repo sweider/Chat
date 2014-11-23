@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - chat_db@localhost" uuid="08246139-ad5b-48c4-872a-16b781c49fdc">
+    <database-info product="MySQL" version="5.6.19-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="chat_db"/>
+    <table name="Messages" schema="" catalog="chat_db" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="creationDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="dialogId" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="text" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="author" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_sj26alc1o22uejvpqphfgj5ru" table="users_Messages" schema="" catalog="chat_db" columns="messages_id"/>
+    </table>
+    <table name="users" schema="" catalog="chat_db" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="Age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="LastName" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Nick" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_5kqg8s58mncwm9esyq0y2iepd" table="users_Messages" schema="" catalog="chat_db" columns="users_id"/>
+    </table>
+    <table name="users_Messages" schema="" catalog="chat_db" type="TABLE">
+      <column name="users_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="messages_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <foreign-key name="FK_5kqg8s58mncwm9esyq0y2iepd" columns="users_id" ref-table="users" ref-schema="" ref-catalog="chat_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_sj26alc1o22uejvpqphfgj5ru" columns="messages_id" ref-table="Messages" ref-schema="" ref-catalog="chat_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_sj26alc1o22uejvpqphfgj5ru" unique="true" columns="messages_id"/>
+      <index name="FK_5kqg8s58mncwm9esyq0y2iepd" unique="false" columns="users_id"/>
+    </table>
+  </data-source>
+</component>
